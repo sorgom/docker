@@ -1,0 +1,7 @@
+# do not transfer personal access to github
+.ssh
+# do not save any history
+.*_history
+# do not save any temporary files
+*~
+.swp
