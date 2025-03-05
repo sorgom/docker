@@ -19,11 +19,11 @@ echo "ms ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # install packages
 apt-get update
-apt-get -y --no-install-recommends install build-essential uuid-dev cloc valgrind net-tools vim
+apt-get -y --no-install-recommends install build-essential uuid-dev cloc valgrind net-tools vim git ssh python3 python3-pip
 apt-get clean
 rm -rf /var/lib/apt/lists/*
 
-# build & install premake
+build & install premake
 cd /premake-core
 ./Bootstrap.sh
 cp bin/release/premake5 /usr/bin/
