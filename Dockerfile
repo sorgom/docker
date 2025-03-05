@@ -1,29 +1,28 @@
 FROM ubuntu:24.04
 LABEL Description="build environment"
 
-
 SHELL ["/bin/bash", "-c"]
 
 ENV HOME=/home/som
 
-
 ADD submodules/premake-core /premake-core
 
 RUN <<EOF
-# create user ms and set home directory
+# create user som and set home directory
 mkdir -p $HOME
-useradd -ms /bin/bash -d $HOME som
+# user som, password tt
+useradd -ms /bin/bash -d $HOME -p pacK1Ochismos som
 chown -R som:som $HOME
-# grant root privileges
-echo "ms ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+# grant sudo privileges
+echo "som ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # install packages
 apt-get update
-apt-get -y --no-install-recommends install build-essential uuid-dev cloc valgrind net-tools vim git ssh python3 python3-pip
+apt-get -y --no-install-recommends install build-essential uuid-dev cloc valgrind net-tools vim git ssh python3 python3-pip sudo
 apt-get clean
 rm -rf /var/lib/apt/lists/*
 
-build & install premake
+# build & copy premake
 cd /premake-core
 ./Bootstrap.sh
 cp bin/release/premake5 /usr/bin/
