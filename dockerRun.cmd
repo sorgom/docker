@@ -12,6 +12,7 @@ set myDir=%cd%
 rem regard folder above as git repositories folder
 cd ..
 set gitDir=%cd%
+set user=dev
 
 rem set image
 set image=ubuntu_env:0.1
@@ -22,10 +23,10 @@ rem overwrite image home folder with local
 rem advantage: 
 rem - histories are saved in local
 rem - id est: histories don't get lost with each container start / exit
-set somMount=--mount type=bind,source=%myDir%/som,target=/home/som
+set userMount=--mount type=bind,source=%myDir%/%user%,target=/home/%user%
 
 rem optional ports mapping sample
 rem set portsmap=-p 127.0.0.1:8081:8091/tcp -p 127.0.0.1:8082:8092/tcp -p 127.0.0.1:8083:8093/tcp
 set portsmap=
 
-docker run -it --rm --name=somdev %gitMount% %somMount% %portsmap% %image%
+docker run -it --rm --name=somdev %gitMount% %userMount% %portsmap% %image%
