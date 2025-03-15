@@ -1,0 +1,16 @@
+[user]
+	email = you@example.com
+	name = Your Name
+
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	com = commit -a -m
+	comm = commit -m
+
+[push]
+	autoSetupRemote = true
+	
+[safe]
+	directory = *
