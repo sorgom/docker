@@ -15,7 +15,7 @@ set gitDir=%cd%
 set user=dev
 
 rem set image
-set image=ubuntu_env:0.1
+set image=devenv:latest
 
 rem set mount to git repositories folder as /git
 set gitMount=--mount type=bind,source=%gitDir%,target=/git
@@ -29,4 +29,4 @@ rem optional ports mapping sample
 rem set portsmap=-p 127.0.0.1:8081:8091/tcp -p 127.0.0.1:8082:8092/tcp -p 127.0.0.1:8083:8093/tcp
 set portsmap=
 
-docker run -it --rm --name=somdev %gitMount% %userMount% %portsmap% %image%
+docker run -it --rm --name=devenv %gitMount% %userMount% %portsmap% %image%

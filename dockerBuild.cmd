@@ -7,4 +7,4 @@ rem ============================================================
 rem created by Manfred Sorgo 
 
 cd /d %~dp0
-docker build -t ubuntu_env:0.1 .
+docker build -t devenv:0.1 -t devenv:latest .

@@ -2,6 +2,7 @@
 .ssh
 # do not save any history
 .*_history
+.local_*
 # do not save any temporary files
 *~
 .swp
