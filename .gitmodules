@@ -1,3 +1,6 @@
 [submodule "submodules/premake-core"]
 	path = submodules/premake-core
 	url = git@github.com:premake/premake-core.git
+[submodule "submodules/bullseye"]
+	path = submodules/bullseye
+	url = git@github.com:sorgom/bullseye.git

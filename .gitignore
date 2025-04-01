@@ -6,3 +6,4 @@
 # do not save any temporary files
 *~
 .swp
+.BullseyeCoverage

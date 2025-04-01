@@ -5,10 +5,14 @@
 # base image
 # since alpine does not provide a complete gcc - it is debian
 FROM debian:12-slim
+#FROM ubuntu:24.04
 LABEL Description="C++ development environment"
 
 # copy premake sources temporarily
 ADD submodules/premake-core /premake-core
+
+ADD submodules/bullseye /bullseye
+
 
 RUN <<EOF
 # install packages
@@ -38,8 +42,19 @@ cd /premake-core
 # copy premake binary to /usr/bin and make it executable
 cp bin/release/premake5 /usr/bin/
 chmod +x /usr/bin/premake5
-# cleanup premake sources
+# cleanup sources
+cd /
 rm -rf /premake-core
+
+# install bullseye coverage
+cd /bullseye
+./install --key 8FdIuJV2yQS6YGdoRSiRNedRj4uY5yKZS7bakBQnV3pT --search "$PATH" --prefix /usr/local/bullseye
+# cleanup sources
+cd /
+rm -rf /bullseye
+# add bullseye to PATH
+echo "PATH=\"/usr/local/bullseye/bin:\$PATH\"" >> /etc/bash.bashrc
+echo "export PATH" >> /etc/bash.bashrc
 
 # add user dev
 user=dev
