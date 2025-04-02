@@ -1,24 +1,40 @@
 # docker
-my personal docker environment for C++ development including 
+docker environment for C++ development including 
 - python
 - premake5
 - Bullseye coverage
 
-## /git folder
-The folder you cloned this repo into will be mapped to ``/git`` folder in container.
-So this repo will be ``/git/docker``.
+## build image
+**Bullseye linux license key required**
+- write license key into _bullseye_key.txt_ in this directory
+- then call _dockerBuild.cmd_
 
-## Bullseye license key required**
-- write license key into ``bullseye_key.txt`` in this directory
-- then call dockerBuild.cmd
+## run container
+call _dockerRun.cmd_
 
-## github access
-If you want to access gitHub (push / pull) copy your personal ``.ssh`` folder into ``dev`` folder.
+### mounts
+**/git folder**
 
-## your aliases
-For personal aliases create ``.local_aliases`` in ``dev`` folder.
+The folder you cloned this repo into will be mounted to _/git_ folder in container.
+So this repo will be _/git/docker_.
 
-## tree
+**home folder**
+
+The local _dev_ folder will be mounted as user _dev_ ´s home folder.
+
+Advantage:
+-   the bash history will be kept locally
+
+**github access**
+
+If you want to access gitHub (push / pull) copy your personal _.ssh_ folder into _dev_ folder.
+
+**your aliases**
+
+For personal aliases create _.local_aliases_ in _dev_ folder.
+
+
+## local tree
 ```
 docker
 ├── bullseye_key.txt
