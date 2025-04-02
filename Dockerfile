@@ -7,21 +7,12 @@
 FROM debian:12-slim
 LABEL Description="C++ development environment"
 
-# copy premake sources temporarily
+# copy premake and bullseye sources temporarily
 ADD submodules/premake-core /premake-core
+ADD submodules/bullseye /bullseye
+ADD bullseye_key.txt /bullseye/bullseye_key.txt
 
 RUN <<EOF
-user=dev
-home=/home/$user
-# create user home directory
-mkdir -p $home
-# add user, password tt (theoretically never needed)
-useradd -ms /bin/bash -d $home -p pacK1Ochismos $user
-# grant sudo privileges without password
-echo "$user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-chown -R $user:$user $home
-
 # install packages
 # update  
 apt-get update
@@ -49,8 +40,31 @@ cd /premake-core
 # copy premake binary to /usr/bin and make it executable
 cp bin/release/premake5 /usr/bin/
 chmod +x /usr/bin/premake5
-# cleanup premake sources
+# cleanup sources
+cd /
 rm -rf /premake-core
+
+# install bullseye coverage
+cd /bullseye
+./install --key $(cat bullseye_key.txt) --search "$PATH" --prefix /usr/local/bullseye
+# cleanup sources
+cd /
+rm -rf /bullseye
+# add bullseye to PATH
+echo "PATH=\"/usr/local/bullseye/bin:\$PATH\"" >> /etc/bash.bashrc
+echo "export PATH" >> /etc/bash.bashrc
+
+# add user dev
+user=dev
+home=/home/$user
+# create user home directory
+mkdir -p $home
+# add user, password tt (theoretically never needed)
+useradd -ms /bin/bash -d $home -p pacK1Ochismos $user
+# sudo without password
+echo "$user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+chown -R $user:$user $home
 EOF
 
 USER dev
