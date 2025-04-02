@@ -9,3 +9,4 @@
 .BullseyeCoverage
 bullseye_key.txt
 tmp*
+submodules/bullseye
