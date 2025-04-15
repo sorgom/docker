@@ -11,17 +11,6 @@ LABEL Description="C++ development environment"
 ADD submodules/premake-core /premake-core
 
 RUN <<EOF
-user=dev
-home=/home/$user
-# create user home directory
-mkdir -p $home
-# add user, password tt (theoretically never needed)
-useradd -ms /bin/bash -d $home -p pacK1Ochismos $user
-# grant sudo privileges without password
-echo "$user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-chown -R $user:$user $home
-
 # install packages
 # update  
 apt-get update
@@ -51,6 +40,18 @@ cp bin/release/premake5 /usr/bin/
 chmod +x /usr/bin/premake5
 # cleanup premake sources
 rm -rf /premake-core
+
+# add user dev
+user=dev
+home=/home/$user
+# create user home directory
+mkdir -p $home
+# add user, password tt (theoretically never needed)
+useradd -ms /bin/bash -d $home -p pacK1Ochismos $user
+# sudo without password
+echo "$user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+chown -R $user:$user $home
 EOF
 
 USER dev

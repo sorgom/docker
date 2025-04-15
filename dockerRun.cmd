@@ -9,7 +9,7 @@ SETLOCAL
 
 cd /d %~dp0
 set myDir=%cd%
-rem regard folder above as git repositories folder
+rem regard folder above this repo as git repositories folder
 cd ..
 set gitDir=%cd%
 set user=dev

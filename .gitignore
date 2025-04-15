@@ -6,3 +6,7 @@
 # do not save any temporary files
 *~
 .swp
+.BullseyeCoverage
+bullseye_key.txt
+tmp*
+submodules/bullseye
