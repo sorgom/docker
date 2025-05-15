@@ -12,5 +12,10 @@ alias gb='git branch'
 alias gdn='git diff --name-only'
 alias gcl='git clean -dfXq .'
 alias gl='git log --abbrev-commit -n 10'
-alias gfo='git fetch origin'
 alias gfd='git fetch origin dev:dev'
+
+gfo () { 
+    echo fetching $1 ...
+    git fetch origin $1:$1; 
+}
+export -f gfo

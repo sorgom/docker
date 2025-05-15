@@ -21,7 +21,7 @@ _install make g++ uuid-dev
 # analysis
 _install cloc valgrind cppcheck net-tools
 # python latest version
-_install python3 python3-pip
+_install python3 python3-pip python3-aiosmtpd python3-asyncio
 apt-get upgrade -y python3
 # git (ssh for github / gitlab)
 _install git ssh
